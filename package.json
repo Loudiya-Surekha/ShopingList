@@ -4,9 +4,9 @@
   "description": "A full-stack **Shopping List System** that allows users to **register, log in, and manage their shopping items** securely. Users can add, update, delete, and mark items as purchased. Built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js) with JWT-based authentication.",
   "main": "backend/server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "build": "npm install && cd frontend && npm install && npm run build",
-    "render-build": "npm run build"
+    "install-all": "cd frontend && npm install && cd ../backend && npm install",
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "start": "cd backend && node server.js"
   },
   
   "repository": {
