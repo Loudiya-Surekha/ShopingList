@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import api from "../lib/api.js";          
+import api from "../lib/api.js";
 import { AuthContext } from "../item/authStore.jsx";
 import { LOGIN_URL } from "../constants/urls.js";
 import { useNavigate } from "react-router-dom";
@@ -9,12 +9,13 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  // const [showPassword, setShowPassword] = useState(false); 
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
 
     try {
       const res = await api.post(LOGIN_URL, { email, password });
@@ -25,45 +26,69 @@ export default function LoginForm() {
       alert("Login successful!");
       navigate("/home");
     } catch (err) {
-      console.error(err.response?.data);
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || "Invalid email or password");
     }
   };
 
   return (
-    <form 
-      onSubmit={handleSubmit}
-      className="container mt-5 p-4 shadow rounded"
-      style={{ maxWidth: "400px" }}
-    >
-      <h2 className="text-center mb-4">Login</h2>
-
-      <input
-        type="email"
-        className="form-control mb-3"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-
-      <input
-        type="password"
-        className="form-control mb-3"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-
-      <button 
-        type="submit" 
-        className="btn btn-primary w-100"
+    <div className="d-flex flex-column align-items-center justify-content-center ">
+      <form
+        onSubmit={handleSubmit}
+        className="p-4 shadow rounded bg-white w-100"
+        style={{ maxWidth: "400px" }}
       >
-        Login
-      </button>
+        <h2 className="text-center fw-bold mb-4">Login</h2>
 
-      {error && <p className="text-danger mt-3 text-center">{error}</p>}
-    </form>
+        {/* Email */}
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Email</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Password */}
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Password</label>
+          <div className="input-group">
+            <input
+              // type={showPassword ? "text" : "password"}
+              type="password"
+              className="form-control"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            {/* Simple Bootstrap toggle button */}
+            {/* <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button> */}
+          </div>
+        </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="alert alert-danger text-center py-2">
+            {error}
+          </div>
+        )}
+
+        {/* Submit */}
+        <button type="submit" className="btn btn-primary w-100 mt-2">
+          Login
+        </button>
+      </form>
+    </div>
   );
 }
