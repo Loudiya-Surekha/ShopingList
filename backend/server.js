@@ -3,11 +3,17 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import path from "path";
+import { fileURLToPath } from "url";
+
 
 import { connectDB } from './src/config/db.js';
 import authRoutes from './src/routes/auth.route.js';
 import itemsRoutes from './src/routes/items.route.js';
 import errorHandler from './src/middleware/errorHandler.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load .env at the very top
 dotenv.config();
@@ -30,15 +36,21 @@ app.get('/', (req, res) => {
 
 // Error handling middleware
 app.use(errorHandler);
+/*------------------------------------------------------------ */
+// if (process.env.NODE_ENV === "production") {
+//   const __dirname = path.resolve();
+//   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+//   });
+// }
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-  });
-}
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 // Start server function
 const start = async () => {
