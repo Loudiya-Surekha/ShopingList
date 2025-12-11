@@ -1,21 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
-// Named export instead of default
-// export const authMiddleware = (req, res, next) => {
-//   const authHeader = req.header('Authorization');
-//   if (!authHeader) return res.status(401).json({ message: 'No token, authorization denied' });
-
-//   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//     req.user = { id: decoded.id };
-//     next();
-//   } catch (err) {
-//     res.status(401).json({ message: 'Token is not valid' });
-//   }
-// };
-
 export const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 

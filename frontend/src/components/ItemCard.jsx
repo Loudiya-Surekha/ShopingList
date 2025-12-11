@@ -15,7 +15,6 @@ export default function ItemCard({ item }) {
     >
       <div className="card-body d-flex justify-content-between align-items-center">
 
-        {/* LEFT SIDE */}
         <div>
           <h5 className="card-title fw-bold mb-1">{item.name}</h5>
 
@@ -23,7 +22,6 @@ export default function ItemCard({ item }) {
             Qty: {item.quantity}
           </span>
 
-          {/* ⭐ Unit Badge */}
           {item.unit && (
             <span className="badge bg-info text-dark me-2">
               {item.unit}
@@ -35,7 +33,6 @@ export default function ItemCard({ item }) {
           </span>
         </div>
 
-        {/* Delete Button */}
         <button
           className="btn btn-danger btn-sm px-2 py-1"
           onClick={() => dispatch(deleteItem(item._id))}

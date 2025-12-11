@@ -1,74 +1,3 @@
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { addItem } from "../item/itemsSlice";
-
-// export default function AddItemForm() {
-//   const [name, setName] = useState("");
-//   const [quantity, setQuantity] = useState("1");
-//   const [category, setCategory] = useState("General");
-
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (!name) return;
-//     dispatch(addItem({ name, quantity, category }));
-//     setName("");
-//     setQuantity("1");
-//     setCategory("General");
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className="add-form container mt-4 ms-3">
-//       <div className="row g-2">
-//         <div className="col-md-4">
-//           <input
-//             type="text"
-//             placeholder="Item name"
-//             value={name}
-//             onChange={(e) => setName(e.target.value)}
-//             required
-//             className="form-control"
-//           />
-//         </div>
-//         <div className="col-md-2">
-//           <select
-//             value={quantity}
-//             onChange={(e) => setQuantity(e.target.value)}
-//             className="form-select"
-//           >
-//             {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-//               <option key={num} value={num}>
-//                 {num}
-//               </option>
-//             ))}
-//           </select>
-//         </div>
-//         <div className="col-md-3">
-//           <select
-//             value={category}
-//             onChange={(e) => setCategory(e.target.value)}
-//             className="form-select"
-//           >
-//             <option value="General">General</option>
-//             <option value="Groceries">Groceries</option>
-//             <option value="Electronics">Electronics</option>
-//             <option value="Clothing">Clothing</option>
-//             <option value="Fruits">Fruits</option>
-//             <option value="Other">Other</option>
-//           </select>
-//         </div>
-//         <div className="col-md-3 d-grid">
-//           <button type="submit" className="btn btn-primary">
-//             Add Item
-//           </button>
-//         </div>
-//       </div>
-//     </form>
-//   );
-// }
-
-
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../item/itemsSlice";
@@ -77,11 +6,9 @@ export default function AddItemForm() {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("1");
   const [category, setCategory] = useState("General");
-  const [unit, setUnit] = useState("pcs"); // ⭐ NEW
-
+  const [unit, setUnit] = useState("pcs"); 
   const dispatch = useDispatch();
 
-  // ⭐ Map of units for each category
   const unitOptions = {
     General: ["pcs", "pack", "bottle"],
     Groceries: ["kg", "g", "L", "pack"],
@@ -95,7 +22,7 @@ export default function AddItemForm() {
     e.preventDefault();
     if (!name) return;
 
-    // ⭐ Now sending unit also
+
     dispatch(addItem({ name, quantity, category, unit }));
 
     setName("");

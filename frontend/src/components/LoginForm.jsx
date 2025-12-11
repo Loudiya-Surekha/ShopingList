@@ -9,7 +9,6 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const [showPassword, setShowPassword] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -66,25 +65,15 @@ export default function LoginForm() {
               required
             />
 
-            {/* Simple Bootstrap toggle button */}
-            {/* <button
-              type="button"
-              className="btn btn-outline-secondary"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "Hide" : "Show"}
-            </button> */}
           </div>
         </div>
 
-        {/* Error Message */}
         {error && (
           <div className="alert alert-danger text-center py-2">
             {error}
           </div>
         )}
 
-        {/* Submit */}
         <button type="submit" className="btn btn-primary w-100 mt-2">
           Login
         </button>
