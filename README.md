@@ -3,6 +3,10 @@
 A full-stack **Shopping List System** that allows users to **register, log in, and manage their shopping items** securely. Users can add, update, delete, and mark items as purchased. Built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js) with JWT-based authentication.
 
 ---
+### 🎥 Project Demo Video
+
+[![Watch the video](https://img.youtube.com/vi/jrGxVbAPsGY/0.jpg)](https://youtu.be/jrGxVbAPsGY)
+
 
 ## 🔹 Features
 
