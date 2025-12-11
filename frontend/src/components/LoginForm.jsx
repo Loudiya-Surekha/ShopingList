@@ -37,7 +37,7 @@ export default function LoginForm() {
         className="p-4 shadow rounded bg-white w-100"
         style={{ maxWidth: "400px" }}
       >
-        <h2 className="text-center fw-bold mb-4">Login</h2>
+        <h3 className="text-center fw-bold mb-4">Your Shopping List Awaits</h3>
 
         {/* Email */}
         <div className="mb-3">
